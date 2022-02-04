@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import "./styles/Form.scss";
 
-const Form = ({ imageList, setImageList }) => {
-  const [url, setUrl] = useState([{ url: "" }, { url: "" }]);
+const Form = ({
+  imageList,
+  setImageList,
+  setCategory,
+  setTitle,
+  setSubtitle,
+  setAutor,
+  setColor,
+  color,
+}) => {
+  const [url, setUrl] = useState([{ url: "" }]);
 
   const addUrlHandler = (e) => {
     e.preventDefault();
@@ -12,11 +21,38 @@ const Form = ({ imageList, setImageList }) => {
   };
 
   const addImageHandler = (e) => {
-    console.log(e.target.value);
+    console.log(e.target);
     setImageList([...imageList, e.target.value]);
   };
 
-  console.log(imageList);
+  const categoryHandler = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const titleHandler = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const subtitleHandler = (e) => {
+    setSubtitle(e.target.value);
+  };
+
+  const autorHandler = (e) => {
+    setAutor(e.target.value);
+  };
+
+  const colorHandler = (e) => {
+    setColor(e.target.value);
+  };
+
+  console.log(color);
+
+  const deleteHandler = (e, id) => {
+    e.preventDefault();
+    console.log(e.target.value);
+  };
+
+  // console.log(imageList);
   // console.log(url);
   return (
     <form className="form-container">
@@ -27,7 +63,9 @@ const Form = ({ imageList, setImageList }) => {
       <ul>
         {url.map((url, index) => (
           <div className="image-control" key={index}>
-            <button className="btn btn-delete">מחק</button>
+            <button className="btn btn-delete" onClick={deleteHandler}>
+              מחק
+            </button>
             <input
               className="image-input"
               dir="rtl"
@@ -44,18 +82,31 @@ const Form = ({ imageList, setImageList }) => {
         <label htmlFor="background-color" className="form-label">
           צבע רקע - שם קטגוריה
         </label>
-        <select name="colors" className="form-input" dir="rtl">
-          <option value="red">אדום</option>
-          <option value="blue">כחול</option>
+        <select
+          name="colors"
+          onChange={colorHandler}
+          className="form-input"
+          dir="rtl"
+        >
           <option value="black">שחור</option>
-          <option value="yellow">צהוב</option>
+          <option value="rgb(199, 39, 39)">אדום</option>
+          <option value="#25D366">ירוק</option>
+          <option value="rgb(218, 218, 59)">צהוב</option>
+          <option value="#128C7E">כחול</option>
         </select>
       </div>
       <div className="form-category">
         <label htmlFor="background-color" className="form-label">
           שם קטגוריה
         </label>
-        <input type="text" className="form-input" dir="rtl" />
+        <input
+          type="text"
+          className="form-input"
+          dir="rtl"
+          onChange={categoryHandler}
+          maxlength="15"
+          placeholder="בחר קטגוריה"
+        />
       </div>
       <div className="form-category">
         <label htmlFor="background-color" className="form-label">
@@ -63,9 +114,11 @@ const Form = ({ imageList, setImageList }) => {
         </label>
         <textarea
           type="text"
-          maxlength="30"
+          maxlength="50"
           className="form-input"
           dir="rtl"
+          placeholder="בחר כותרת"
+          onChange={titleHandler}
         ></textarea>
       </div>
       <div className="form-category">
@@ -74,18 +127,26 @@ const Form = ({ imageList, setImageList }) => {
         </label>
         <textarea
           type="text"
-          maxlength="60"
+          maxlength="120"
           className="form-input"
           dir="rtl"
+          placeholder=" בחר כותרת משנה"
+          onChange={subtitleHandler}
         ></textarea>
       </div>
       <div className="form-category">
         <label htmlFor="background-color" className="form-label">
           שם המחבר
         </label>
-        <input type="text" className="form-input" dir="rtl" />
+        <input
+          type="text"
+          className="form-input"
+          dir="rtl"
+          maxlength="25"
+          placeholder=" בחר את שם המחבר"
+          onChange={autorHandler}
+        />
       </div>
-      {/* <button className="form-btn form-submit">הוסף לגלריה</button> */}
     </form>
   );
 };

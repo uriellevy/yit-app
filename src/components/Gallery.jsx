@@ -5,27 +5,51 @@ import {
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
 
-const Gallery = ({ imageList }) => {
+const Gallery = ({ imageList, category, title, subtitle, autor, color }) => {
+  // console.log(imageList);
   return (
     <div className="gallery-container">
       <div className="image-wrapper">
-        <img
-          src={imageList[imageList.length - 1]}
-          alt="image"
-          className="gallery-img"
-        />
-        <MdOutlineArrowBackIosNew className="arrow left" />
-        <MdOutlineArrowForwardIos className="arrow right" />
+        {imageList.length === 0 ? (
+          <img
+            src="https://megatron.co.il/wp-content/uploads/2015/12/default-placeholder-1.png"
+            alt="image"
+            className="gallery-img-empty"
+          />
+        ) : (
+          <div>
+            {imageList.length > 1 ? (
+              <div>
+                <img
+                  src={imageList[imageList.length - 1]}
+                  alt="image"
+                  className="gallery-img"
+                />
+                <MdOutlineArrowBackIosNew className="arrow left" />
+                <MdOutlineArrowForwardIos className="arrow right" />
+              </div>
+            ) : (
+              <img
+                src={imageList[imageList.length - 1]}
+                alt="image"
+                className="gallery-img"
+              />
+            )}
+          </div>
+        )}
       </div>
       <div className="gallery-content">
-        <h2 className="gallery-category">חופש</h2>
-        <h2 className="gallery-title">הטבע הפראי של קוסטה ריקה</h2>
+        <h2
+          className="gallery-category"
+          style={{ backgroundColor: !color ? "#000" : color }}
+        >
+          {!category ? "קטגוריה" : category}
+        </h2>
+        <h2 className="gallery-title">{!title ? "כותרת" : title}</h2>
         <p className="gallery-text">
-          {" "}
-          גם אני מת לצאת כבר לחופש מהעבודה ולגור איזה חצי שנה בבונגלו מתחת לעץ
-          קוקוס. רק צריך שהילדים יגיעו לגיל 10 ושאעבוד בעבודה מרחוק. סעמק
+          {!subtitle ? "נא להקליד כותרת משנה" : subtitle}
         </p>
-        <h4 className="gallery-autor">מישהו שמבין</h4>
+        <h4 className="gallery-autor">{!autor ? "שם המחבר" : autor}</h4>
       </div>
     </div>
   );
