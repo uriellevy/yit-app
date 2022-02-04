@@ -22,3 +22,9 @@ html {
   -o-background-size: cover;
   background-size: cover;
 }
+
+@media (max-width: 768px) {
+  .app {
+    height: 200vh;
+  }
+}

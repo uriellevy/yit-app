@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./styles/Form.scss";
+import { texts } from "../consts";
 
 const Form = ({
   imageList,
@@ -51,20 +52,20 @@ const Form = ({
 
   const deleteHandler = (e, id) => {
     e.preventDefault();
-    console.log(e.target.value);
+    console.log(e.target);
   };
 
   return (
     <form className="form-container">
       <label htmlFor="images" className="images-title">
-        תמונות
+        {texts.FORM_HEADER}
       </label>
 
       <ul>
         {url.map((url, index) => (
           <div className="image-control" key={index}>
             <button className="btn btn-delete" onClick={deleteHandler}>
-              מחק
+              {texts.FORM_BUTTON_DELETE}
             </button>
             <input
               className="image-input"
@@ -76,11 +77,11 @@ const Form = ({
       </ul>
 
       <button className="form-btn" onClick={addUrlHandler}>
-        הוסף תמונה
+        {texts.FORM_BUTTON_ADD}
       </button>
       <div className="form-category">
         <label htmlFor="background-color" className="form-label">
-          צבע רקע - שם קטגוריה
+          {texts.FORM_BG_COLOR}
         </label>
         <select
           name="colors"
@@ -97,7 +98,7 @@ const Form = ({
       </div>
       <div className="form-category">
         <label htmlFor="background-color" className="form-label">
-          שם קטגוריה
+          {texts.FORM_CATEGORY}
         </label>
         <input
           type="text"
@@ -110,7 +111,7 @@ const Form = ({
       </div>
       <div className="form-category">
         <label htmlFor="background-color" className="form-label">
-          כותרת
+          {texts.FORM_TITLE}
         </label>
         <textarea
           type="text"
@@ -123,11 +124,11 @@ const Form = ({
       </div>
       <div className="form-category">
         <label htmlFor="background-color" className="form-label">
-          כותרת משנה
+          {texts.FORM_SUBTITLE}
         </label>
         <textarea
           type="text"
-          maxlength="120"
+          maxlength="105"
           className="form-input"
           dir="rtl"
           placeholder=" בחר כותרת משנה"
@@ -136,7 +137,7 @@ const Form = ({
       </div>
       <div className="form-category">
         <label htmlFor="background-color" className="form-label">
-          שם המחבר
+          {texts.FORM_AUTOR}
         </label>
         <input
           type="text"
