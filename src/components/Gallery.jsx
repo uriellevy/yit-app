@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/Gallery.scss";
 import {
   MdOutlineArrowBackIosNew,
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
 
-const Gallery = () => {
+const Gallery = ({ imageList }) => {
   return (
     <div className="gallery-container">
       <div className="image-wrapper">
         <img
-          src="https://images.unsplash.com/photo-1552980870-139c7b393f0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Y29zdGElMjByaWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+          src={imageList[imageList.length - 1]}
           alt="image"
           className="gallery-img"
         />

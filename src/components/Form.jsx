@@ -1,20 +1,45 @@
 import React, { useState } from "react";
 import "./styles/Form.scss";
 
-const Form = () => {
-  // const [url, setUrl] = useState([{ url: "" }, { url: "" }]);
+const Form = ({ imageList, setImageList }) => {
+  const [url, setUrl] = useState([{ url: "" }, { url: "" }]);
+
+  const addUrlHandler = (e) => {
+    e.preventDefault();
+    if (url.length <= 4) {
+      setUrl([...url, { url: "" }]);
+    }
+  };
+
+  const addImageHandler = (e) => {
+    console.log(e.target.value);
+    setImageList([...imageList, e.target.value]);
+  };
+
+  console.log(imageList);
+  // console.log(url);
   return (
-    <div className="form-container">
+    <form className="form-container">
       <label htmlFor="images" className="images-title">
         תמונות
       </label>
 
-      <div className="image-control">
-        <button className="btn btn-delete">מחק</button>
-        <input className="image-input" />
-      </div>
+      <ul>
+        {url.map((url, index) => (
+          <div className="image-control" key={index}>
+            <button className="btn btn-delete">מחק</button>
+            <input
+              className="image-input"
+              dir="rtl"
+              onChange={addImageHandler}
+            />
+          </div>
+        ))}
+      </ul>
 
-      <button className="form-btn">הוסף תמונה</button>
+      <button className="form-btn" onClick={addUrlHandler}>
+        הוסף תמונה
+      </button>
       <div className="form-category">
         <label htmlFor="background-color" className="form-label">
           צבע רקע - שם קטגוריה
@@ -60,7 +85,8 @@ const Form = () => {
         </label>
         <input type="text" className="form-input" dir="rtl" />
       </div>
-    </div>
+      {/* <button className="form-btn form-submit">הוסף לגלריה</button> */}
+    </form>
   );
 };
 
