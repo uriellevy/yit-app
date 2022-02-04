@@ -10,6 +10,8 @@ const Form = ({
   setAutor,
   setColor,
   color,
+  current,
+  setCurrent,
 }) => {
   const [url, setUrl] = useState([{ url: "" }]);
 
@@ -18,10 +20,10 @@ const Form = ({
     if (url.length <= 4) {
       setUrl([...url, { url: "" }]);
     }
+    setCurrent(imageList.length - 1);
   };
 
   const addImageHandler = (e) => {
-    console.log(e.target);
     setImageList([...imageList, e.target.value]);
   };
 
@@ -45,15 +47,11 @@ const Form = ({
     setColor(e.target.value);
   };
 
-  console.log(color);
-
   const deleteHandler = (e, id) => {
     e.preventDefault();
     console.log(e.target.value);
   };
 
-  // console.log(imageList);
-  // console.log(url);
   return (
     <form className="form-container">
       <label htmlFor="images" className="images-title">

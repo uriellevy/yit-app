@@ -5,8 +5,26 @@ import {
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
 
-const Gallery = ({ imageList, category, title, subtitle, autor, color }) => {
-  // console.log(imageList);
+const Gallery = ({
+  imageList,
+  category,
+  title,
+  subtitle,
+  autor,
+  color,
+  current,
+  setCurrent,
+}) => {
+  const length = imageList.length;
+
+  const nextHandler = () => {
+    setCurrent(current === length - 1 ? 0 : current + 1);
+  };
+
+  const prevHandler = () => {
+    setCurrent(current === 0 ? length - 1 : current - 1);
+  };
+  console.log(imageList);
   return (
     <div className="gallery-container">
       <div className="image-wrapper">
@@ -21,12 +39,18 @@ const Gallery = ({ imageList, category, title, subtitle, autor, color }) => {
             {imageList.length > 1 ? (
               <div>
                 <img
-                  src={imageList[imageList.length - 1]}
+                  src={imageList[current]}
                   alt="image"
                   className="gallery-img"
                 />
-                <MdOutlineArrowBackIosNew className="arrow left" />
-                <MdOutlineArrowForwardIos className="arrow right" />
+                <MdOutlineArrowBackIosNew
+                  className="arrow left"
+                  onClick={prevHandler}
+                />
+                <MdOutlineArrowForwardIos
+                  className="arrow right"
+                  onClick={nextHandler}
+                />
               </div>
             ) : (
               <img

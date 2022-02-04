@@ -5,6 +5,7 @@ import "./styles/HomeView.scss";
 
 const HomeView = () => {
   const [imageList, setImageList] = useState([]);
+  const [current, setCurrent] = useState(imageList.length - 1);
   const [color, setColor] = useState("");
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
@@ -22,6 +23,8 @@ const HomeView = () => {
           setAutor={setAutor}
           setColor={setColor}
           color={color}
+          current={current}
+          setCurrent={setCurrent}
         />
         <Gallery
           imageList={imageList}
@@ -30,6 +33,8 @@ const HomeView = () => {
           subtitle={subtitle}
           autor={autor}
           color={color}
+          current={current}
+          setCurrent={setCurrent}
         />
       </div>
     </>
