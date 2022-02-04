@@ -10,7 +10,6 @@ const Form = ({
   setSubtitle,
   setAutor,
   setColor,
-  color,
   current,
   setCurrent,
 }) => {
@@ -26,7 +25,7 @@ const Form = ({
 
   const addImageHandler = (e) => {
     setImageList([...imageList, e.target.value]);
-    setCurrent(imageList.length - 1);
+    setCurrent(imageList.length);
     console.log(current);
   };
 

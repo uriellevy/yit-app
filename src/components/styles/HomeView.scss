@@ -5,10 +5,22 @@
   background-color: rgba(153, 153, 153, 0.445);
   width: 100%;
   height: 100%;
+  animation: slide-down 0.5s ease-out forwards;
 }
 
 @media (max-width: 768px) {
   .homeview-container {
     flex-direction: column;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

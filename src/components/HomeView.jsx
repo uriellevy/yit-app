@@ -22,7 +22,6 @@ const HomeView = () => {
           setSubtitle={setSubtitle}
           setAutor={setAutor}
           setColor={setColor}
-          color={color}
           current={current}
           setCurrent={setCurrent}
         />
