@@ -17,14 +17,16 @@ const Form = ({
 
   const addUrlHandler = (e) => {
     e.preventDefault();
-    if (url.length <= 4) {
+    if (url.length <= 4 && imageList.length === url.length) {
       setUrl([...url, { url: "" }]);
     }
-    setCurrent(imageList.length - 1);
+    console.log(imageList);
   };
 
   const addImageHandler = (e) => {
     setImageList([...imageList, e.target.value]);
+    setCurrent(imageList.length - 1);
+    console.log(current);
   };
 
   const categoryHandler = (e) => {

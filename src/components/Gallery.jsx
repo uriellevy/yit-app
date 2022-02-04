@@ -24,7 +24,8 @@ const Gallery = ({
   const prevHandler = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
-  console.log(imageList);
+  console.log(current);
+  // console.log(imageList);
   return (
     <div className="gallery-container">
       <div className="image-wrapper">
