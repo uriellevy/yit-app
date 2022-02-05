@@ -4,7 +4,7 @@ import Gallery from "./Gallery";
 import "./styles/HomeView.scss";
 
 const HomeView = () => {
-  const [urlList, setUrlList] = useState([{}]);
+  const [urlList, setUrlList] = useState([""]);
   const [currentImageToDisplay, setCurrentImageToDisplay] = useState(
     urlList.length - 1
   );

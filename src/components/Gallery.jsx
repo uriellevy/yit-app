@@ -28,60 +28,59 @@ const Gallery = ({
       currentImageToDisplay === 0 ? length - 1 : currentImageToDisplay - 1
     );
   };
+
+  console.log(urlList);
   return (
     <div className="gallery-container">
       <div className="image-wrapper">
         {urlList.length === 1 && (
           <div>
-            {!urlList[0].imageUrl ? (
+            {!urlList[0] ? (
               <img
                 src="https://megatron.co.il/wp-content/uploads/2015/12/default-placeholder-1.png"
                 alt="image"
                 className="gallery-img-empty"
               />
             ) : (
-              <img
-                src={urlList[0].imageUrl}
-                alt="image"
-                className="gallery-img"
-              />
+              <img src={urlList[0]} alt="image" className="gallery-img" />
             )}
           </div>
         )}
 
-        {urlList.length === 2 && !urlList[urlList.length - 1].imageUrl && (
+        {urlList.length === 2 && urlList[urlList.length - 1] === "" && (
           <div>
-            <img
-              src={urlList[0].imageUrl}
-              alt="image"
-              className="gallery-img"
-            />
+            <img src={urlList[0]} alt="image" className="gallery-img" />
           </div>
         )}
 
         {urlList.length > 1 && (
           <div>
-            {urlList[urlList.length - 1].imageUrl ? (
+            {urlList[urlList.length - 1] !== "" ? (
               <img
-                src={urlList[currentImageToDisplay].imageUrl}
+                src={urlList[currentImageToDisplay]}
                 alt="image"
                 className="gallery-img"
               />
             ) : (
               <img
-                src={urlList[urlList.length - 2].imageUrl}
+                src={urlList[urlList.length - 2]}
                 alt="image"
                 className="gallery-img"
               />
             )}
-            <MdOutlineArrowBackIosNew
-              className="arrow left"
-              onClick={prevHandler}
-            />
-            <MdOutlineArrowForwardIos
-              className="arrow right"
-              onClick={nextHandler}
-            />
+
+            {urlList[1] !== "" && (
+              <div>
+                <MdOutlineArrowBackIosNew
+                  className="arrow left"
+                  onClick={prevHandler}
+                />
+                <MdOutlineArrowForwardIos
+                  className="arrow right"
+                  onClick={nextHandler}
+                />
+              </div>
+            )}
           </div>
         )}
       </div>

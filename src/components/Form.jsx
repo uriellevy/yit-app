@@ -15,19 +15,19 @@ const Form = ({
 }) => {
   const addNewInputHandler = (e) => {
     e.preventDefault();
-    if (urlList.length <= 3 && urlList[urlList.length - 1].imageUrl) {
-      setUrlList([...urlList, { imageUrl: "" }]);
+    if (urlList.length <= 3 && urlList[urlList.length - 1]) {
+      setUrlList([...urlList, ""]);
     }
   };
 
-  const changeUrlHandler = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...urlList];
-    list[index][name] = value;
-    setUrlList(list);
-    setCurrentImageToDisplay(index);
-  };
-  console.log(urlList);
+  // const changeUrlHandler = (e, index) => {
+  //   const { name, value } = e.target;
+  //   const list = [...urlList];
+  //   list[index][name] = value;
+  //   setUrlList(list);
+  //   setCurrentImageToDisplay(index);
+  // };
+  // console.log(urlList);
 
   const deleteHandler = (e, index) => {
     e.preventDefault();
@@ -37,6 +37,7 @@ const Form = ({
     setUrlList(list);
   };
   console.log(currentImageToDisplay);
+  console.log(urlList);
 
   const categoryHandler = (e) => {
     setCategory(e.target.value);
@@ -56,6 +57,25 @@ const Form = ({
 
   const selectColorHandler = (e) => {
     setColor(e.target.value);
+  };
+
+  const changeUrlHandler = (str, index) => {
+    let regex =
+      /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    if (!regex.test(str)) {
+      alert("Please enter valid URL.");
+      console.log("Please enter valid URL.");
+      return false;
+    } else {
+      // console.log(str);
+
+      const list = [...urlList];
+      list[index] = str;
+      setUrlList(list);
+      setCurrentImageToDisplay(index);
+
+      return true;
+    }
   };
 
   return (
@@ -83,8 +103,8 @@ const Form = ({
               dir="rtl"
               type="text"
               name="imageUrl"
-              value={currentUrl.u}
-              onChange={(e) => changeUrlHandler(e, index)}
+              // value={currentUrl.u}
+              onChange={(e) => changeUrlHandler(e.target.value, index)}
             />
           </div>
         ))}

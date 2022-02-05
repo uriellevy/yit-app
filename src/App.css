@@ -13,10 +13,10 @@
 }
 
 html {
-  background-color: rgba(153, 153, 153, 0.404);
+  background-color: #000;
 
   scroll-behavior: smooth;
-  background: url("/src/img/background.png") no-repeat center center;
+  background: url("/src/img/background.png") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
