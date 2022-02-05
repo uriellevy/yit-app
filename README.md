@@ -3,6 +3,7 @@
 ## How to initialize the project?
 
 Download zip file or clone the project.
+
 run in your terminal:
 
 ### `npm install`
