@@ -6,60 +6,87 @@ import {
 } from "react-icons/md";
 
 const Gallery = ({
-  imageList,
   category,
   title,
   subtitle,
   autor,
   color,
-  current,
-  setCurrent,
+  currentImageToDisplay,
+  setCurrentImageToDisplay,
+  urlList,
 }) => {
-  const length = imageList.length;
+  const length = urlList.length;
 
   const nextHandler = () => {
-    setCurrent(current === length - 1 ? 0 : current + 1);
+    setCurrentImageToDisplay(
+      currentImageToDisplay === length - 1 ? 0 : currentImageToDisplay + 1
+    );
   };
 
   const prevHandler = () => {
-    setCurrent(current === 0 ? length - 1 : current - 1);
+    setCurrentImageToDisplay(
+      currentImageToDisplay === 0 ? length - 1 : currentImageToDisplay - 1
+    );
   };
-  console.log(current);
-  // console.log(imageList);
+  // console.log(currentImageToDisplay);
   return (
     <div className="gallery-container">
       <div className="image-wrapper">
-        {imageList.length === 0 ? (
+        {!urlList[0].urlImage && urlList.length === 1 && (
           <img
             src="https://megatron.co.il/wp-content/uploads/2015/12/default-placeholder-1.png"
             alt="image"
             className="gallery-img-empty"
           />
-        ) : (
+        )}
+
+        {urlList[0].urlImage && urlList.length === 1 && (
+          <img src={urlList[0].urlImage} alt="image" className="gallery-img" />
+        )}
+
+        {urlList.length > 1 && urlList[urlList.length - 1].urlImage && (
           <div>
-            {imageList.length > 1 ? (
-              <div>
-                <img
-                  src={imageList[current]}
-                  alt="image"
-                  className="gallery-img"
-                />
-                <MdOutlineArrowBackIosNew
-                  className="arrow left"
-                  onClick={prevHandler}
-                />
-                <MdOutlineArrowForwardIos
-                  className="arrow right"
-                  onClick={nextHandler}
-                />
-              </div>
-            ) : (
-              <img
-                src={imageList[imageList.length - 1]}
-                alt="image"
-                className="gallery-img"
-              />
-            )}
+            <img
+              src={urlList[currentImageToDisplay].urlImage}
+              alt="image"
+              className="gallery-img"
+            />
+            <MdOutlineArrowBackIosNew
+              className="arrow left"
+              onClick={prevHandler}
+            />
+            <MdOutlineArrowForwardIos
+              className="arrow right"
+              onClick={nextHandler}
+            />
+          </div>
+        )}
+
+        {urlList.length === 2 && !urlList[urlList.length - 1].urlImage && (
+          <div>
+            <img
+              src={urlList[urlList.length - 2].urlImage}
+              alt="image"
+              className="gallery-img"
+            />
+          </div>
+        )}
+
+        {urlList.length > 2 && !urlList[urlList.length - 1].urlImage && (
+          <div>
+            <img
+              src={urlList[urlList.length - 2].urlImage}
+              alt="image"
+              className="gallery-img"
+            />
+            <MdOutlineArrowBackIosNew
+              className="arrow left"
+              onClick={prevHandler}
+            />
+            <MdOutlineArrowForwardIos
+              className="arrow right"
+              onClick={nextHandler}
+            />
           </div>
         )}
       </div>

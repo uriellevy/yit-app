@@ -3,30 +3,36 @@ import "./styles/Form.scss";
 import { texts } from "../consts";
 
 const Form = ({
-  imageList,
-  setImageList,
   setCategory,
   setTitle,
   setSubtitle,
   setAutor,
   setColor,
-  current,
-  setCurrent,
+  setCurrentImageToDisplay,
+  urlList,
+  setUrlList,
 }) => {
-  const [url, setUrl] = useState([{ url: "" }]);
-
-  const addUrlHandler = (e) => {
+  const addNewInputHandler = (e) => {
     e.preventDefault();
-    if (url.length <= 4 && imageList.length === url.length) {
-      setUrl([...url, { url: "" }]);
+    if (urlList.length <= 3 && urlList[urlList.length - 1].urlImage) {
+      setUrlList([...urlList, { imageUrl: "" }]);
     }
-    console.log(imageList);
   };
 
-  const addImageHandler = (e) => {
-    setImageList([...imageList, e.target.value]);
-    setCurrent(imageList.length);
-    console.log(current);
+  const changeUrlHandler = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...urlList];
+    list[index][name] = value;
+    setUrlList(list);
+    setCurrentImageToDisplay(index);
+  };
+  // console.log(urlList);
+
+  const deleteHandler = (index) => {
+    setCurrentImageToDisplay(index - 1);
+    const list = [...urlList];
+    list.splice(index, 1);
+    setUrlList(list);
   };
 
   const categoryHandler = (e) => {
@@ -45,37 +51,42 @@ const Form = ({
     setAutor(e.target.value);
   };
 
-  const colorHandler = (e) => {
+  const selectColorHandler = (e) => {
     setColor(e.target.value);
-  };
-
-  const deleteHandler = (e, id) => {
-    e.preventDefault();
-    console.log(e.target);
   };
 
   return (
     <form className="form-container">
-      <label htmlFor="images" className="images-title">
-        {texts.FORM_HEADER}
-      </label>
+      <div className="title-wrapper">
+        <label htmlFor="images" className="images-title">
+          {texts.FORM_HEADER}
+        </label>
+      </div>
 
-      <ul>
-        {url.map((url, index) => (
+      <ul className="image-control-wrapper">
+        {urlList.map((currentUrl, index) => (
           <div className="image-control" key={index}>
-            <button className="btn btn-delete" onClick={deleteHandler}>
-              {texts.FORM_BUTTON_DELETE}
-            </button>
+            {urlList.length > 1 && (
+              <button
+                className="btn btn-delete"
+                onClick={() => deleteHandler(index)}
+              >
+                {texts.FORM_BUTTON_DELETE}
+              </button>
+            )}
+
             <input
               className="image-input"
               dir="rtl"
-              onChange={addImageHandler}
+              name="urlImage"
+              value={currentUrl.u}
+              onChange={(e) => changeUrlHandler(e, index)}
             />
           </div>
         ))}
       </ul>
 
-      <button className="form-btn" onClick={addUrlHandler}>
+      <button className="form-btn" onClick={addNewInputHandler}>
         {texts.FORM_BUTTON_ADD}
       </button>
       <div className="form-category">
@@ -84,7 +95,7 @@ const Form = ({
         </label>
         <select
           name="colors"
-          onChange={colorHandler}
+          onChange={selectColorHandler}
           className="form-input"
           dir="rtl"
         >
@@ -104,7 +115,7 @@ const Form = ({
           className="form-input"
           dir="rtl"
           onChange={categoryHandler}
-          maxlength="15"
+          maxLength="15"
           placeholder="בחר קטגוריה"
         />
       </div>
@@ -114,7 +125,7 @@ const Form = ({
         </label>
         <textarea
           type="text"
-          maxlength="50"
+          maxLength="50"
           className="form-input"
           dir="rtl"
           placeholder="בחר כותרת"
@@ -127,7 +138,7 @@ const Form = ({
         </label>
         <textarea
           type="text"
-          maxlength="105"
+          maxLength="105"
           className="form-input"
           dir="rtl"
           placeholder=" בחר כותרת משנה"
@@ -142,7 +153,7 @@ const Form = ({
           type="text"
           className="form-input"
           dir="rtl"
-          maxlength="25"
+          maxLength="25"
           placeholder=" בחר את שם המחבר"
           onChange={autorHandler}
         />
