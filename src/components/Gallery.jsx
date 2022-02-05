@@ -16,18 +16,33 @@ const Gallery = ({
   urlList,
 }) => {
   const length = urlList.length;
+  console.log(length);
 
   const nextHandler = () => {
-    setCurrentImageToDisplay(
-      currentImageToDisplay === length - 1 ? 0 : currentImageToDisplay + 1
-    );
+    if (length > 2 && urlList[length - 1] === "") {
+      setCurrentImageToDisplay(
+        currentImageToDisplay === length - 2 ? 0 : currentImageToDisplay + 1
+      );
+    } else {
+      setCurrentImageToDisplay(
+        currentImageToDisplay === length - 1 ? 0 : currentImageToDisplay + 1
+      );
+    }
   };
 
   const prevHandler = () => {
-    setCurrentImageToDisplay(
-      currentImageToDisplay === 0 ? length - 1 : currentImageToDisplay - 1
-    );
+    if (length > 2 && urlList[length - 1] === "") {
+      setCurrentImageToDisplay(
+        currentImageToDisplay === 0 ? length - 2 : currentImageToDisplay - 1
+      );
+    } else {
+      setCurrentImageToDisplay(
+        currentImageToDisplay === 0 ? length - 1 : currentImageToDisplay - 1
+      );
+    }
   };
+  // console.log(urlList);
+  // console.log(currentImageToDisplay);
 
   return (
     <div className="gallery-container">
@@ -54,19 +69,11 @@ const Gallery = ({
 
         {urlList.length > 1 && (
           <div>
-            {urlList[urlList.length - 1] !== "" ? (
-              <img
-                src={urlList[currentImageToDisplay]}
-                alt="image"
-                className="gallery-img"
-              />
-            ) : (
-              <img
-                src={urlList[urlList.length - 2]}
-                alt="image"
-                className="gallery-img"
-              />
-            )}
+            <img
+              src={urlList[currentImageToDisplay]}
+              alt="image"
+              className="gallery-img"
+            />
 
             {urlList[1] !== "" && (
               <div>

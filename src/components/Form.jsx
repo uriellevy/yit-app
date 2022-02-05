@@ -22,7 +22,9 @@ const Form = ({
 
   const deleteHandler = (e, index) => {
     e.preventDefault();
-    setCurrentImageToDisplay(currentImageToDisplay - 1);
+    setCurrentImageToDisplay(
+      currentImageToDisplay > 0 && currentImageToDisplay - 1
+    );
     const list = [...urlList];
     list.splice(index, 1);
     setUrlList(list);
