@@ -29,7 +29,6 @@ const Gallery = ({
     );
   };
 
-  console.log(urlList);
   return (
     <div className="gallery-container">
       <div className="image-wrapper">

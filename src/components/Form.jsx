@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./styles/Form.scss";
 import { texts } from "../consts";
 
@@ -20,15 +20,6 @@ const Form = ({
     }
   };
 
-  // const changeUrlHandler = (e, index) => {
-  //   const { name, value } = e.target;
-  //   const list = [...urlList];
-  //   list[index][name] = value;
-  //   setUrlList(list);
-  //   setCurrentImageToDisplay(index);
-  // };
-  // console.log(urlList);
-
   const deleteHandler = (e, index) => {
     e.preventDefault();
     setCurrentImageToDisplay(currentImageToDisplay - 1);
@@ -36,8 +27,6 @@ const Form = ({
     list.splice(index, 1);
     setUrlList(list);
   };
-  console.log(currentImageToDisplay);
-  console.log(urlList);
 
   const categoryHandler = (e) => {
     setCategory(e.target.value);
@@ -67,13 +56,10 @@ const Form = ({
       console.log("Please enter valid URL.");
       return false;
     } else {
-      // console.log(str);
-
       const list = [...urlList];
       list[index] = str;
       setUrlList(list);
       setCurrentImageToDisplay(index);
-
       return true;
     }
   };
@@ -103,7 +89,6 @@ const Form = ({
               dir="rtl"
               type="text"
               name="imageUrl"
-              // value={currentUrl.u}
               onChange={(e) => changeUrlHandler(e.target.value, index)}
             />
           </div>
