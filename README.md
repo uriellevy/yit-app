@@ -4,7 +4,7 @@
 
 Download zip file or clone the project.
 
-run in your terminal:
+Run in your terminal:
 
 ### `npm install`
 
@@ -14,6 +14,6 @@ Next run in your terminal:
 
 ## How this app works?
 
-insert a VALID url to the uppermost input and expect to get an image on the article component (notice you can add up to 4 images).
+Insert a VALID url to the uppermost input and expect to get an image on the article component (notice you can add up to 4 images).
 
-please choose a category name, category background color, title, subtitle and autor name and create the article.
+Please choose a category name, category background color, title, subtitle and autor name and create the article.
