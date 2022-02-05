@@ -53,7 +53,7 @@
   .image-control-wrapper {
     width: 90%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     flex-direction: column;
 
     .image-control {
@@ -74,14 +74,11 @@
         }
       }
 
-      .btn-none {
-        background-color: #999 !important;
-      }
-
       .image-input {
         padding: 3px 0;
         outline: none;
         width: 80%;
+        float: right;
       }
     }
   }

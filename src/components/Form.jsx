@@ -8,13 +8,14 @@ const Form = ({
   setSubtitle,
   setAutor,
   setColor,
+  currentImageToDisplay,
   setCurrentImageToDisplay,
   urlList,
   setUrlList,
 }) => {
   const addNewInputHandler = (e) => {
     e.preventDefault();
-    if (urlList.length <= 3 && urlList[urlList.length - 1].urlImage) {
+    if (urlList.length <= 3 && urlList[urlList.length - 1].imageUrl) {
       setUrlList([...urlList, { imageUrl: "" }]);
     }
   };
@@ -26,14 +27,16 @@ const Form = ({
     setUrlList(list);
     setCurrentImageToDisplay(index);
   };
-  // console.log(urlList);
+  console.log(urlList);
 
-  const deleteHandler = (index) => {
-    setCurrentImageToDisplay(index - 1);
+  const deleteHandler = (e, index) => {
+    e.preventDefault();
+    setCurrentImageToDisplay(currentImageToDisplay - 1);
     const list = [...urlList];
     list.splice(index, 1);
     setUrlList(list);
   };
+  console.log(currentImageToDisplay);
 
   const categoryHandler = (e) => {
     setCategory(e.target.value);
@@ -69,7 +72,7 @@ const Form = ({
             {urlList.length > 1 && (
               <button
                 className="btn btn-delete"
-                onClick={() => deleteHandler(index)}
+                onClick={(e) => deleteHandler(e, index)}
               >
                 {texts.FORM_BUTTON_DELETE}
               </button>
@@ -78,7 +81,8 @@ const Form = ({
             <input
               className="image-input"
               dir="rtl"
-              name="urlImage"
+              type="text"
+              name="imageUrl"
               value={currentUrl.u}
               onChange={(e) => changeUrlHandler(e, index)}
             />
@@ -125,7 +129,7 @@ const Form = ({
         </label>
         <textarea
           type="text"
-          maxLength="50"
+          maxLength="45"
           className="form-input"
           dir="rtl"
           placeholder="בחר כותרת"

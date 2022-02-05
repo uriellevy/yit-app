@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./styles/Gallery.scss";
 import {
   MdOutlineArrowBackIosNew,
@@ -28,57 +28,52 @@ const Gallery = ({
       currentImageToDisplay === 0 ? length - 1 : currentImageToDisplay - 1
     );
   };
-  // console.log(currentImageToDisplay);
   return (
     <div className="gallery-container">
       <div className="image-wrapper">
-        {!urlList[0].urlImage && urlList.length === 1 && (
-          <img
-            src="https://megatron.co.il/wp-content/uploads/2015/12/default-placeholder-1.png"
-            alt="image"
-            className="gallery-img-empty"
-          />
-        )}
-
-        {urlList[0].urlImage && urlList.length === 1 && (
-          <img src={urlList[0].urlImage} alt="image" className="gallery-img" />
-        )}
-
-        {urlList.length > 1 && urlList[urlList.length - 1].urlImage && (
+        {urlList.length === 1 && (
           <div>
-            <img
-              src={urlList[currentImageToDisplay].urlImage}
-              alt="image"
-              className="gallery-img"
-            />
-            <MdOutlineArrowBackIosNew
-              className="arrow left"
-              onClick={prevHandler}
-            />
-            <MdOutlineArrowForwardIos
-              className="arrow right"
-              onClick={nextHandler}
-            />
+            {!urlList[0].imageUrl ? (
+              <img
+                src="https://megatron.co.il/wp-content/uploads/2015/12/default-placeholder-1.png"
+                alt="image"
+                className="gallery-img-empty"
+              />
+            ) : (
+              <img
+                src={urlList[0].imageUrl}
+                alt="image"
+                className="gallery-img"
+              />
+            )}
           </div>
         )}
 
-        {urlList.length === 2 && !urlList[urlList.length - 1].urlImage && (
+        {urlList.length === 2 && !urlList[urlList.length - 1].imageUrl && (
           <div>
             <img
-              src={urlList[urlList.length - 2].urlImage}
+              src={urlList[0].imageUrl}
               alt="image"
               className="gallery-img"
             />
           </div>
         )}
 
-        {urlList.length > 2 && !urlList[urlList.length - 1].urlImage && (
+        {urlList.length > 1 && (
           <div>
-            <img
-              src={urlList[urlList.length - 2].urlImage}
-              alt="image"
-              className="gallery-img"
-            />
+            {urlList[urlList.length - 1].imageUrl ? (
+              <img
+                src={urlList[currentImageToDisplay].imageUrl}
+                alt="image"
+                className="gallery-img"
+              />
+            ) : (
+              <img
+                src={urlList[urlList.length - 2].imageUrl}
+                alt="image"
+                className="gallery-img"
+              />
+            )}
             <MdOutlineArrowBackIosNew
               className="arrow left"
               onClick={prevHandler}
