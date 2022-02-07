@@ -28,6 +28,8 @@ const Form = ({
     setUrlList(list);
     if (list.length - 1 < index) {
       setCurrentImageToDisplay(index - 1);
+    } else if (currentImageToDisplay !== index) {
+      setCurrentImageToDisplay(currentImageToDisplay - 1);
     }
   };
 
