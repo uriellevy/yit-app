@@ -22,12 +22,13 @@ const Form = ({
 
   const deleteHandler = (e, index) => {
     e.preventDefault();
-    setCurrentImageToDisplay(
-      currentImageToDisplay > 0 && currentImageToDisplay - 1
-    );
+
     const list = [...urlList];
     list.splice(index, 1);
     setUrlList(list);
+    if (list.length - 1 < index) {
+      setCurrentImageToDisplay(index - 1);
+    }
   };
 
   const categoryHandler = (e) => {
@@ -55,7 +56,6 @@ const Form = ({
       /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
     if (!regex.test(str)) {
       alert("Please enter valid URL.");
-      console.log("Please enter valid URL.");
       return false;
     } else {
       const list = [...urlList];

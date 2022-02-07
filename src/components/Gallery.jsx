@@ -16,7 +16,9 @@ const Gallery = ({
   urlList,
 }) => {
   const length = urlList.length;
-  console.log(length);
+  // console.log(length);
+  // console.log(urlList);
+  // console.log(currentImageToDisplay);
 
   const nextHandler = () => {
     if (length > 2 && urlList[length - 1] === "") {
