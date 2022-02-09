@@ -50,19 +50,13 @@ const Gallery = ({
               <img
                 src="https://megatron.co.il/wp-content/uploads/2015/12/default-placeholder-1.png"
                 alt="image"
-                className="gallery-img-empty"
+                className="gallery-img empty"
               />
             ) : (
               <img src={urlList[0]} alt="image" className="gallery-img" />
             )}
           </div>
         )}
-
-        {/* {length === 2 && length - 1 === "" && (
-          <div>
-            <img src={urlList[0]} alt="image" className="gallery-img" />
-          </div>
-        )} */}
 
         {length > 1 && (
           <div>
