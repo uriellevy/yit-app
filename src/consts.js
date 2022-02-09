@@ -8,3 +8,11 @@ export const texts = {
   FORM_AUTOR: "שם המחבר",
   FORM_BUTTON_DELETE: "מחק",
 };
+
+export const colors = [
+  ["שחור", "black"],
+  ["אדום", "rgb(199, 39, 39)"],
+  ["ירוק", "green"],
+  ["צהוב", "rgb(218, 218, 59)"],
+  ["כחול", "blue"],
+];

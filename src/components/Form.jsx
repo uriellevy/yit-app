@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/Form.scss";
-import { texts } from "../consts";
+import { texts, colors } from "../consts";
 
 const Form = ({
   setCategory,
@@ -13,6 +13,7 @@ const Form = ({
   urlList,
   setUrlList,
 }) => {
+  console.log(colors);
   const addNewInputHandler = (e) => {
     e.preventDefault();
     if (urlList.length <= 3 && urlList[urlList.length - 1]) {
@@ -112,11 +113,11 @@ const Form = ({
           className="form-input"
           dir="rtl"
         >
-          <option value="black">שחור</option>
-          <option value="rgb(199, 39, 39)">אדום</option>
-          <option value="#25D366">ירוק</option>
-          <option value="rgb(218, 218, 59)">צהוב</option>
-          <option value="#128C7E">כחול</option>
+          {colors.map((color, index) => (
+            <option value={color[1]} key={index}>
+              {color[0]}
+            </option>
+          ))}
         </select>
       </div>
       <div className="form-category">
