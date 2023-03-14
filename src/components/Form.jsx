@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import "./styles/Form.scss";
 import { texts, colors } from "../consts";
 
@@ -13,7 +13,7 @@ const Form = ({
   urlList,
   setUrlList,
 }) => {
-  console.log(colors);
+  
   const addNewInputHandler = (e) => {
     e.preventDefault();
     if (urlList.length <= 3 && urlList[urlList.length - 1]) {

@@ -1,11 +1,11 @@
-import React from "react";
+import React, {memo} from "react";
 import "./styles/Gallery.scss";
 import {
   MdOutlineArrowBackIosNew,
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
 
-const Gallery = ({
+const Gallery = React.memo(({
   category,
   title,
   subtitle,
@@ -96,6 +96,6 @@ const Gallery = ({
       </div>
     </div>
   );
-};
+});
 
 export default Gallery;
